@@ -3,7 +3,6 @@ from app.model.Usuario import Usuarios
 from app.schema.SchemaUsuario import UsuariosResponse
 
 router = APIRouter()
-
 @router.post("/PostUsuario/")
 def crear_usuario(request: UsuariosResponse):
     try:

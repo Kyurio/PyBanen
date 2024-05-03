@@ -11,17 +11,21 @@ class Usuarios:
     @staticmethod
     def create(data: dict) -> bool:
 
-        print("request modelo ", data)
         Usuarios.db.connect()
         try:
             placeholders = ', '.join(['%s'] * len(data))
             columns = ', '.join(data.keys())
             query = f"INSERT INTO {Usuarios.tabla} ({columns}) VALUES ({placeholders})"
-            Usuarios.db.execute(query, list(data.values()))
+            request = Usuarios.db.execute(query, list(data.values()))
             Usuarios.db.connection.commit()
-            return True
+
+            print(request)
+
+            if request == 0:
+                return True
+            else:
+                return False
         except Exception as e:
-            print(f"Error al insertar en la base de datos: {e}")
             return False
         finally:
             Usuarios.db.close()
@@ -53,10 +57,10 @@ class Usuarios:
             Usuarios.db.close()
 
     @staticmethod
-    def delete(id: int) -> bool:
+    def delete(rut: str) -> bool:
         Usuarios.db.connect()
         try:
-            query = f"DELETE FROM {Usuarios.tabla} WHERE id = {id}"
+            query = f"DELETE FROM {Usuarios.tabla} WHERE rut_post = '{rut}'"
             Usuarios.db.execute(query)
             Usuarios.db.connection.commit()
             return True
@@ -72,38 +76,37 @@ class Usuarios:
             query = f"SELECT * FROM {Usuarios.tabla}"
             result = Usuarios.db.execute(query)
 
-            usuarios_response = []
-
-            for usuario_data in result:
-                usuario_response = UsuariosResponse(
-                    rut_post=usuario_data[0],
-                    nom_post=usuario_data[1],
-                    paterno=usuario_data[2],
-                    materno=usuario_data[3],
-                    nombre=usuario_data[4],
-                    titulo=usuario_data[5],
-                    clave=usuario_data[6],
-                    fecha_nac=usuario_data[7],
-                    tipo_doc=int(usuario_data[8]),
-                    log_licen=int(usuario_data[9]),
-                    log_movil=int(usuario_data[10]),
-                    fono1=usuario_data[11],
-                    fono2=usuario_data[12],
-                    direccion=usuario_data[13],
-                    id_comuna=int(usuario_data[14]),
-                    id_region=int(usuario_data[15]),
-                    id_provincia=int(usuario_data[16]),
-                    email=usuario_data[17],
-                    sbase=int(usuario_data[18]),
-                    liquido=int(usuario_data[19]),
-                    bruto=int(usuario_data[20]),
-                    estado=int(usuario_data[21]),
-                    created_at=usuario_data[22],
-                    updated_at=usuario_data[23]
+            usuarios = []
+            for result in result:
+                usuario = UsuariosResponse(
+                    rut_post=result[0],
+                    nom_post=result[1],
+                    paterno=result[2],
+                    materno=result[3],
+                    nombre=result[4],
+                    titulo=result[5],
+                    clave=result[6],
+                    fecha_nac=result[7],
+                    tipo_doc=result[8],
+                    log_licen=result[9],
+                    log_movil=result[10],
+                    fono1=result[11],
+                    fono2=result[12],
+                    direccion=result[13],
+                    id_comuna=result[14],
+                    id_region=result[15],
+                    id_provincia=result[16],
+                    email=result[18],
+                    sbase=result[17],
+                    liquido=result[19],
+                    bruto=result[20],
+                    estado=result[21],
+                    created_at=result[22],
+                    updated_at=result[23]
                 )
-                usuarios_response.append(usuario_response)
+                usuarios.append(usuario)
 
-            return usuarios_response
+            return usuarios
 
         except Exception as e:
             print(f"Error al obtener todos los registros: {e}")

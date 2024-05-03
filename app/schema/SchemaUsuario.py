@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from datetime import date, datetime
+from pydantic import BaseModel, Field
+from datetime import datetime
 from typing import Optional
 
 class UsuariosResponse(BaseModel):
@@ -10,7 +10,7 @@ class UsuariosResponse(BaseModel):
     nombre: str
     titulo: Optional[str]
     clave: str
-    fecha_nac: Optional[date]
+    fecha_nac: Optional[datetime]
     tipo_doc: int
     log_licen: int
     log_movil: int
@@ -25,6 +25,4 @@ class UsuariosResponse(BaseModel):
     liquido: int
     bruto: int
     estado: int
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
 

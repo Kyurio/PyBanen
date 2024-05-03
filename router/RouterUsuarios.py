@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.controller.Usuarios import GetUsuarios, PostUsuario
+from app.controller.Usuarios import GetUsuarios, PostUsuario, PutUsuario, DeleteUsuario
 from app.schema.SchemaUsuario import UsuariosResponse
 from typing import List
 
@@ -13,9 +13,9 @@ def listar_usuario_route():
 def crear_usuario_route(request: UsuariosResponse):
     return PostUsuario(request)
 
-@router.put("/UpdateUsuarios/")
+@router.put("/UpdateUsuarios/{id}")
 def actualizar_usuario_route(request: UsuariosResponse):
-    return UpdateUsuarios(request)
+    return PutUsuario(request)
 
 @router.delete("/DeleteUsuario/{usuario_id}")
 def eliminar_usuario_route(id: int):

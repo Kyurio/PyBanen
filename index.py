@@ -23,6 +23,8 @@ app.add_middleware(
 # ruta usuarios
 app.include_router(RouterUsuarios.PostUsuario.router)
 app.include_router(RouterUsuarios.GetUsuarios.router)
+app.include_router(RouterUsuarios.PutUsuario.router)
+app.include_router(RouterUsuarios.DeleteUsuario.router)
 
 # ruta auth
 app.include_router(RouterLogin.Login.router)
@@ -32,4 +34,5 @@ app.include_router(RouterPublicaciones.GetPublicaciones.router)
 app.include_router(RouterPublicaciones.GetPublicacionId.router)
 
 # ruta regiones
-app.include_router(RouterRegiones.)
+app.include_router(RouterRegiones.GetRegiones.router)
+
