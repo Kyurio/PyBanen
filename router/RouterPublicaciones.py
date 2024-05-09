@@ -14,13 +14,13 @@ def detalle_publicacion_route(id: int):
     return GetPublicacionId(id)
 
 @router.post("/CreateUsuarios/")
-def crear_usuario_route(request: ResponsePublicacion):
+def crear_publicacion_route(request: ResponsePublicacion):
     return PostUsuario(request)
 
 @router.put("/UpdateUsuarios/")
-def actualizar_usuario_route(request: ResponsePublicacion):
+def actualizar_publicacion_route(request: ResponsePublicacion):
     return UpdateUsuarios(request)
 
 @router.delete("/DeleteUsuario/{usuario_id}")
-def eliminar_usuario_route(id: int):
+def eliminar_publicaciono_route(id: int):
     return DeleteUsuario(id)

@@ -6,5 +6,5 @@ from typing import List
 router = APIRouter()
 
 @router.get("/Login/", response_model=List[UserCredentials])
-def logni():
+def login():
     return Login()

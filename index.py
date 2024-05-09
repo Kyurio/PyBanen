@@ -6,8 +6,7 @@ from router import RouterUsuarios
 from router import RouterLogin
 from router import RouterPublicaciones
 from router import RouterRegiones
-
-
+from router import RouterPostulacion
 
 app = FastAPI()
 
@@ -35,4 +34,11 @@ app.include_router(RouterPublicaciones.GetPublicacionId.router)
 
 # ruta regiones
 app.include_router(RouterRegiones.GetRegiones.router)
+
+# postulacion
+app.include_router(RouterPostulacion.PostPostulacion.router)
+app.include_router(RouterPostulacion.PutPostulacion.router)
+app.include_router(RouterPostulacion.DeletePostulacion.router)
+app.include_router(RouterPostulacion.GetPostulacion.router)
+app.include_router(RouterPostulacion.GetAllPostulacion.router)
 

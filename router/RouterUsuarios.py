@@ -17,6 +17,6 @@ def crear_usuario_route(request: UsuariosResponse):
 def actualizar_usuario_route(request: UsuariosResponse):
     return PutUsuario(request)
 
-@router.delete("/DeleteUsuario/{usuario_id}")
+@router.delete("/DeleteUsuario/{id}")
 def eliminar_usuario_route(id: int):
     return DeleteUsuario(id)

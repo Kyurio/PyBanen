@@ -5,7 +5,7 @@ from typing import List
 router = APIRouter()
 
 @router.get("/Usuarios/", response_model=List[UsuariosResponse])
-async def obtener_paises():
+async def obtener_usuarios():
     try:
         obj = Usuarios()
         paises = obj.get_all()

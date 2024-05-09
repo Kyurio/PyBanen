@@ -128,6 +128,7 @@ class Publicaciones:
             return False
         finally:
             Publicaciones.db.close()  # Cierra la conexión a la base de datos
+
     @staticmethod
     def get_all() -> List[ResponsePublicaciones]:
         try:

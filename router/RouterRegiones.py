@@ -6,17 +6,17 @@ from typing import List
 router = APIRouter()
 
 @router.get("/GetAllPublicaciones/", response_model=List[ResponsePublicacion])
-def listar_publicaciones_route():
+def listar_regiones_route():
     return GetRegiones()
 
 @router.post("/CreateUsuarios/")
-def crear_usuario_route(request: ResponsePublicacion):
+def crear_regiones_route(request: ResponsePublicacion):
     return PostUsuario(request)
 
 @router.put("/UpdateUsuarios/")
-def actualizar_usuario_route(request: ResponsePublicacion):
+def actualizar_regiones_route(request: ResponsePublicacion):
     return UpdateUsuarios(request)
 
 @router.delete("/DeleteUsuario/{usuario_id}")
-def eliminar_usuario_route(id: int):
+def eliminar_regiones_route(id: int):
     return DeleteUsuario(id)
