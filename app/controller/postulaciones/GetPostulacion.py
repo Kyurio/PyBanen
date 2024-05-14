@@ -1,13 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from app.model.Usuario import Usuarios
-from app.schema.SchemaUsuario import UsuariosResponse
+from app.model.Postulacion import Postulacion
 
 router = APIRouter()
 @router.get("/GetPostulacion/{id}")
 def detalle_postulaciones(id: int):
     try:
 
-        response = Usuarios.get(id)
+        response = Postulacion.get(id)
         return response
 
     except Exception as e:

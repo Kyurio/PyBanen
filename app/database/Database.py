@@ -23,7 +23,6 @@ class Conexion:
                 password=self.password,
                 database=self.database
             )
-            print("Connected to MySQL database")
         except mysql.connector.Error as err:
             print(f"Error: {err}")
     def close(self):

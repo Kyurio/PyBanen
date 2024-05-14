@@ -1,40 +1,6 @@
 from typing import List
 from app.database.Database import Conexion
-from pydantic import BaseModel, Field, conint, condecimal, confloat
-from datetime import date, datetime
-from decimal import Decimal
-class ResponsePublicaciones(BaseModel):
-    bruto: int
-    carga_hora: Decimal
-    cod_cargo: str
-    cod_city: str
-    cod_oferta: str
-    cod_pais: str
-    cod_sucu: str
-    cod_turno: str
-    contrato: Decimal
-    descripcion: str
-    email_selec: str
-    estado: Decimal
-    estudios: Decimal
-    experiencia: Decimal
-    fecha: date
-    fecha_hora: datetime
-    fecha_ini: date
-    fecha_pub: date
-    fecha_ter: date
-    graduado: Decimal
-    ingles: Decimal
-    licencia: str
-    liquido: int
-    log_discap: Decimal
-    log_video: Decimal
-    modalidad: Decimal
-    nivel_lab: Decimal
-    nom_oferta: str
-    region: Decimal
-    rut_empr: str
-    sbase: int
+from app.schema.SchemaPublicaciones import ResponsePublicacion
 
 class Publicaciones:
 
@@ -63,7 +29,7 @@ class Publicaciones:
             if not result:
                 return []
 
-            rows = [ResponsePublicaciones(
+            rows = [ResponsePublicacion(
                 cod_oferta=row[0],
                 nom_oferta=row[1],
                 rut_empr=row[2],
@@ -130,18 +96,18 @@ class Publicaciones:
             Publicaciones.db.close()  # Cierra la conexión a la base de datos
 
     @staticmethod
-    def get_all() -> List[ResponsePublicaciones]:
+    def get_all() -> List[ResponsePublicacion]:
         try:
             Publicaciones.db.connect()  # Conecta a la base de datos
             query = f"SELECT * FROM {Publicaciones.tabla}"
             result = Publicaciones.db.execute(query)
 
-            print("resultado del modelo ", result)
 
             if not result:
                 return []
 
-            rows = [ResponsePublicaciones(
+            rows = [ResponsePublicacion(
+
                 cod_oferta=row[0],
                 nom_oferta=row[1],
                 rut_empr=row[2],
@@ -173,7 +139,9 @@ class Publicaciones:
                 log_discap=row[28],
                 graduado=row[29],
                 descripcion=row[30],
-                email_selec=row[31]
+                email_selec=row[31],
+                etiqueta=row[32]
+
             ).dict() for row in result]
 
             return rows
@@ -182,4 +150,4 @@ class Publicaciones:
             print(f"Error al obtener todos los registros: {e}")
             return []
         finally:
-            Publicaciones.db.close()  # Cierra la conexión a la base de datos
+            Publicaciones.db.close()

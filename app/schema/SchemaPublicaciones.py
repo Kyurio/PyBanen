@@ -34,3 +34,4 @@ class ResponsePublicacion(BaseModel):
     region: Decimal
     rut_empr: str
     sbase: int
+    etiqueta: str

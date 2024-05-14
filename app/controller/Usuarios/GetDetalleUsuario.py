@@ -5,11 +5,11 @@ from typing import List
 
 router = APIRouter()
 
-@router.get("/Usuarios/", response_model=List[UsuariosResponse])
-async def obtener_usuarios():
+@router.get("/UsuariosDetalle/{id}", response_model=List[UsuariosResponse])
+async def obtener_usuarios(id: int):
     try:
         obj = Usuarios()
-        paises = obj.get_all()
+        paises = obj.get(id)
         return paises
 
     except Exception as e:

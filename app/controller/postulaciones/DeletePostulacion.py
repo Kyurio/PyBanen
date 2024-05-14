@@ -2,9 +2,10 @@ from fastapi import APIRouter, HTTPException
 from app.model.Usuario import Usuarios
 from app.schema.SchemaUsuario import UsuariosResponse
 
+
 router = APIRouter()
 @router.delete("/deletePostulacion/{id}")
-def listar_postulaciones(id: int):
+def delete_publicacion(id: int):
     try:
 
         response = Usuarios.delete(id)

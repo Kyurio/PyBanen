@@ -1,13 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from app.model.Usuario import Usuarios
-from app.schema.SchemaUsuario import UsuariosResponse
+from app.model.Postulacion import Postulacion
 
 router = APIRouter()
 @router.get("/GetPostulacion/")
 def listar_postulaciones():
     try:
 
-        response = Usuarios.get_all()
+        response = Postulacion.get_all()
         return response
 
     except Exception as e:

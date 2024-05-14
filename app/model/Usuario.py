@@ -31,10 +31,10 @@ class Usuarios:
             Usuarios.db.close()
 
     @staticmethod
-    def get(quest_id: int) -> dict:
+    def get(rut: str) -> dict:
         Usuarios.db.connect()
         try:
-            query = f"SELECT * FROM {Usuarios.tabla} WHERE id = {quest_id}"
+            query = f"SELECT * FROM {Usuarios.tabla} WHERE rut = {id}"
             result = Usuarios.db.execute(query)
             if result:
                 return {"id_Usuarios": result[0][0], "nom_Usuarios": result[0][1], "abreviatura": result[0][2]}
